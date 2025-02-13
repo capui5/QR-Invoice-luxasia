@@ -1,0 +1,93 @@
+_schema-version: "3.2"
+ID: Qr-invoice-luxasia
+version: 0.0.1
+modules:
+- name: Qr-invoice-luxasia-destination-content
+  type: com.sap.application.content
+  requires:
+  - name: Qr-invoice-luxasia-destination-service
+    parameters:
+      content-target: true
+  - name: Qr-invoice-luxasia_html_repo_host
+    parameters:
+      service-key:
+        name: Qr-invoice-luxasia_html_repo_host-key
+  - name: uaa_Qr-invoice-luxasia
+    parameters:
+      service-key:
+        name: uaa_Qr-invoice-luxasia-key
+  parameters:
+    content:
+      instance:
+        destinations:
+        - Name: qr_invoice_Qr_invoice_luxasia_html_repo_host
+          ServiceInstanceName: Qr-invoice-luxasia-html5-app-host-service
+          ServiceKeyName: Qr-invoice-luxasia_html_repo_host-key
+          sap.cloud.service: qr-invoice
+        - Authentication: OAuth2UserTokenExchange
+          Name: qr_invoice_uaa_Qr_invoice_luxasia
+          ServiceInstanceName: Qr-invoice-luxasia-xsuaa-service
+          ServiceKeyName: uaa_Qr-invoice-luxasia-key
+          sap.cloud.service: qr-invoice
+        existing_destinations_policy: ignore
+  build-parameters:
+    no-source: true
+- name: Qr-invoice-luxasia-app-content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: Qr-invoice-luxasia_html_repo_host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - comnewcustinvoiceqrnewcustinvoiceqrqrinvoice.zip
+      name: comnewcustinvoiceqrnewcustinvoiceqrqrinvoice
+      target-path: resources/
+- name: comnewcustinvoiceqrnewcustinvoiceqrqrinvoice
+  type: html5
+  path: qr-invoice
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+resources:
+- name: Qr-invoice-luxasia-destination-service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: true
+      init_data:
+        instance:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          existing_destinations_policy: update
+      version: 1.0.0
+    service: destination
+    service-name: Qr-invoice-luxasia-destination-service
+    service-plan: lite
+- name: Qr-invoice-luxasia_html_repo_host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: Qr-invoice-luxasia-html5-app-host-service
+    service-plan: app-host
+- name: uaa_Qr-invoice-luxasia
+  type: org.cloudfoundry.managed-service
+  parameters:
+    path: ./xs-security.json
+    service: xsuaa
+    service-name: Qr-invoice-luxasia-xsuaa-service
+    service-plan: application
+parameters:
+  deploy_mode: html5-repo
+  enable-parallel-deployments: true

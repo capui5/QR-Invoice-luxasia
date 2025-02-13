@@ -1,0 +1,60 @@
+/* Enter your custom styles here *//* Enter your custom styles here */
+
+:root {
+    background-color: #ffffff;
+}
+
+.sapMFlexItemAlignAuto.sapMFlexBoxBGTransparent.sapMFlexItem {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin-top: 2rem;
+}
+
+.sapUiBody {
+    background-color: #ffffff;
+}
+
+.pleaseenter1 {
+    line-height: 1.5;
+    margin-left: 10%;
+    margin-right: 10%;
+    text-align: justify !important;
+    text-justify: inter-word;
+    display: flex;
+    color: #000 !important;
+    padding: 10px;
+    font-size: small;
+    font-weight: lighter;
+}
+
+.mainmenutext {
+    padding: 5px;
+    color: white;
+    font-size: large;
+    font-weight: bold;
+}
+
+.header.sapMIBar {
+    background: black;
+    height: 50px;
+}
+
+.header.sapMTBStandard {
+    border-bottom: none;
+}
+
+.headers.sapMIBar {
+    background: black;
+    height: 40px;
+    border-bottom: none;
+}
+
+.headers.sapMTBStandard {
+    border-bottom: none;
+}
+
+.header2.sapMIBar {
+
+    height: 50px;
+}
