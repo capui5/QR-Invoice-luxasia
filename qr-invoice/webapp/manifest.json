@@ -28,9 +28,9 @@
     },
     "crossNavigation": {
       "inbounds": {
-        "Qr_invoice-manage": {
+        "Qr_invoice-New Profile": {
           "semanticObject": "Qr_invoice",
-          "action": "manage",
+          "action": "New Profile",
           "title": "{{flpTitle}}",
           "signature": {
             "parameters": {},
