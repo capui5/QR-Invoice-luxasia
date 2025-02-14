@@ -34,32 +34,24 @@
                 <f:formContainers>
                     <f:FormContainer>
                         <f:formElements>
-                            <f:FormElement label="{i18n>Name}">
+                             <f:FormElement label="{i18n>Customer_Name}">
                                 <f:fields>
-                                    <Select id="title" selectedKey="{Country}">
-                                        <items>
-                                            <core:Item text="{i18n>Mr}" key="1"/>
-                                            <core:Item text="{i18n>Mrs}" key="2"/>
-                                            <core:Item text="{i18n>Ms}" key="3"/>
-                                        </items>
-                                    </Select>
-                                    <Input placeholder="{i18n>First_Name}" id="fname" required="true"/>
-                                </f:fields>
-                            </f:FormElement>
-                            <f:FormElement label="{i18n>Last_Name}">
-                                <f:fields>
-                                    <Input placeholder="{i18n>Last_Name}" id="lname" required="true"/>
+                                    <Input
+                                        placeholder="{i18n>Customer_Name}"
+                                        id="cname"
+                                      
+                                    />
                                 </f:fields>
                             </f:FormElement>
                             <f:FormElement label="{i18n>Email}">
                                 <f:fields>
-                                    <Input placeholder="{i18n>Email_Address}" id="email" required="true"/>
+                                    <Input placeholder="{i18n>Email_Address}" id="email"/>
                                 </f:fields>
                             </f:FormElement>
                             <f:FormElement label="{i18n>Mobile_Number}">
                                 <f:fields>
-                                    <Select editable="false" id="countrycode"   items="{path: 'CountryTelCodeModel>/' ,
-                                        length:5000}" required="true">
+                                    <Select  id="countrycode"   items="{path: 'CountryTelCodeModel>/' ,
+                                        length:5000}" >
                                         <items>
                                             <core:Item
                                                 text="{CountryTelCodeModel>TelCode}"
@@ -70,12 +62,7 @@
                                             <l:GridData span="XL2 L2 M2 S12" />
                                         </layoutData>
                                     </Select>
-                                    <Input placeholder="{i18n>Mobile_Number}" id="phoneno" required="true"/>
-                                </f:fields>
-                            </f:FormElement>
-                            <f:FormElement label="{i18n>Sales_Employee}">
-                                <f:fields>
-                                    <Input id="salesemployeeinputinvoice" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="onValueHelpSalesEmployeeinvoice"/>
+                                    <Input placeholder="{i18n>Mobile_Number}" id="phoneno" />
                                 </f:fields>
                             </f:FormElement>
                             <f:FormElement label="{i18n>sstno}">
@@ -83,13 +70,42 @@
                                     <Input placeholder="{i18n>sstno}" id="sstno"/>
                                 </f:fields>
                             </f:FormElement>
+                             <f:FormElement label="{i18n>salesorderno}">
+                                <f:fields>
+                                    <Input placeholder="{i18n>salesorderno}" id="Salesordernumber"/>
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="{i18n>NRIC}">
+                                <f:fields>
+                                    <Input placeholder="{i18n>NRIC}" id="NRIC"/>
+                                </f:fields>
+                            </f:FormElement>
                         </f:formElements>
                     </f:FormContainer>
                     <f:FormContainer>
                         <f:formElements>
-                            <f:FormElement label="{i18n>Street}">
+                           <f:FormElement label="{i18n>Address_1}">
                                 <f:fields>
-                                    <Input placeholder="{i18n>Street}" id="street1"/>
+                                    <Input
+                                        placeholder="{i18n>Address_1}"
+                                        id="add1"
+                                    />
+                                </f:fields>
+                            </f:FormElement>
+                             <f:FormElement label="{i18n>Address_2}">
+                                <f:fields>
+                                    <Input
+                                        placeholder="{i18n>Address_2}"
+                                        id="add2"
+                                    />
+                                </f:fields>
+                            </f:FormElement>
+                             <f:FormElement label="{i18n>Address_3}">
+                                <f:fields>
+                                    <Input
+                                        placeholder="{i18n>Address_3}"
+                                        id="add3"
+                                    />
                                 </f:fields>
                             </f:FormElement>
                             <f:FormElement label="{i18n>Pincode}/{i18n>City}">
@@ -104,7 +120,7 @@
                                         items="{path: 'CountryModel>/',
                                         length:5000}"
                                         id="country"
-                                        editable="false"
+                                       
                                     >
                                         <items>
                                             <core:Item
@@ -115,16 +131,7 @@
                                     </Select>
                                 </f:fields>
                             </f:FormElement>
-                            <f:FormElement label="{i18n>salesorderno}">
-                                <f:fields>
-                                    <Input placeholder="{i18n>salesorderno}" id="Salesordernumber"/>
-                                </f:fields>
-                            </f:FormElement>
-                            <f:FormElement label="{i18n>NRIC}">
-                                <f:fields>
-                                    <Input placeholder="{i18n>NRIC}" id="NRIC"/>
-                                </f:fields>
-                            </f:FormElement>
+                           
                             <f:FormElement label="{i18n>regno}">
                                 <f:fields>
                                     <Input placeholder="{i18n>regno}" id="regno"/>
