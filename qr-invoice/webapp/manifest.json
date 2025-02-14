@@ -76,7 +76,7 @@
           "bundleName": "com.newcustinvoiceqr.newcustinvoiceqr.qrinvoice.i18n.i18n"
         }
       },
-      "": {
+      "mainModel": {
         "dataSource": "mainService",
         "preload": true,
         "settings": {}

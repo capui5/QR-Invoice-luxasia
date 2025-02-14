@@ -143,7 +143,7 @@
             </f:Form>
         </FlexBox>
         <HBox alignItems="Center" justifyContent="Center">
-            <Button text="{i18n>Create_new_profile}" press="onValidateinvoiceCustomer" class="wide-create" width="300px" type="Emphasized"/>
+            <Button text="{i18n>Create_new_profile}" press="onCreateProfile" class="wide-create" width="300px" type="Emphasized"/>
         </HBox>
     </Page>
 </mvc:View>

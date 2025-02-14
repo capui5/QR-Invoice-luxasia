@@ -72,49 +72,98 @@ sap.ui.define([
             return sap.ui.core.UIComponent.getRouterFor(this);
         },
 
-        Onroutetotranspage: function () {
-            var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-            var oCustomerNoModel = this.getView().getModel("CustomerNoModel");
+        // Onroutetotranspage: function () {
+        //     var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+        //     var oCustomerNoModel = this.getView().getModel("CustomerNoModel");
             
-            if (!oCustomerNoModel || !oCustomerNoModel.getProperty("/Firstnames") || oCustomerNoModel.getProperty("/Firstnames").length === 0) {
-                sap.m.MessageBox.error("Customer No not found. Please create a new customer and try again.");
-            } else {
-                oRouter.navTo("transaction");
-            }
+        //     if (!oCustomerNoModel || !oCustomerNoModel.getProperty("/Firstnames") || oCustomerNoModel.getProperty("/Firstnames").length === 0) {
+        //         sap.m.MessageBox.error("Customer No not found. Please create a new customer and try again.");
+        //     } else {
+        //         oRouter.navTo("transaction");
+        //     }
+        // },
+        Onroutetotranspage: function () {
+          var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+          var oCustomerNoModel = this.getView().getModel("CustomerNoModel");
+    
+          if (!oCustomerNoModel || !oCustomerNoModel.getProperty("/Firstnames") || oCustomerNoModel.getProperty("/Firstnames").length === 0) {
+            // CustomerNo not found or empty array, display a message or take necessary action
+            // For example, show a message and prevent navigation
+            sap.m.MessageBox.error("Customer No not found. Please create a new customer and try again.", {
+              onClose: function () {
+                // Handle the action when the message box is closed
+                // For example, stay on the current page or navigate elsewhere
+              }
+            });
+          } else {
+            // CustomerNo found in the model, proceed with navigation
+            oRouter.navTo("transaction");
+          }
         },
+    
 
         CountrySetData: function () {
-            var that = this;
-            $.ajax({
-                type: "GET",
-                url: "./sap/opu/odata/sap/ZSDGW_CE_APP_SRV/CountrySet",
-                dataType: "json", 
-                success: function (data) {
-                    var oModel = new sap.ui.model.json.JSONModel();
-                    oModel.setData(data.d.results);
-                    that.getView().setModel(oModel, "CountryModel");
-                },
-                error: function (error) {
-                    console.error("Error fetching country data:", error);
-                }
-            });
+          var that = this;
+    
+          $.ajax({
+            type: "GET",
+            url: "./sap/opu/odata/sap/ZSDGW_CE_APP_SRV/CountrySet",
+            headers: {
+    
+            },
+            dataType: "json",
+            success: function (data) {
+              console.log(data.d.results);
+    
+              // Create a new JSON model
+              var oModel = new sap.ui.model.json.JSONModel();
+    
+              // Set received data to the JSON model
+              oModel.setData(data.d.results);
+    
+              // Set the JSON model to your view or component
+              that.getView().setModel(oModel, "CountryModel");
+              console.log(oModel);
+            },
+            error: function (error) {
+              console.error("Error fetching country data:", error);
+              // Handle error scenarios here
+            }
+          });
         },
-
         CountryCodeData: function () {
-            var that = this;
-            $.ajax({
-                type: "GET",
-                url: "./sap/opu/odata/sap/ZSDGW_CE_APP_SRV/CountryTelCodeSet",
-                dataType: "json", 
-                success: function (data) {
-                    var oModel = new sap.ui.model.json.JSONModel();
-                    oModel.setData(data.d.results);
-                    that.getView().setModel(oModel, "CountryTelCodeModel");
-                },
-                error: function (error) {
-                    console.error("Error fetching country code data:", error);
-                }
-            });
+          var that = this;
+    
+    
+          $.ajax({
+            type: "GET",
+            url: "./sap/opu/odata/sap/ZSDGW_CE_APP_SRV/CountryTelCodeSet",
+            headers: {
+    
+    
+            },
+            dataType: "json",
+            success: function (data) {
+              console.log(data.d.results);
+    
+              // Create a new JSON model
+              var oModel = new sap.ui.model.json.JSONModel();
+    
+              // Set received data to the JSON model
+              oModel.setData(data.d.results);
+    
+              // Set the JSON model to your view or component
+              that.getView().setModel(oModel, "CountryTelCodeModel");
+              console.log(oModel);
+            },
+            error: function (error) {
+              console.error("Error fetching country data:", error);
+              // Handle error scenarios here
+            }
+          });
+        },
+        onCreateProfile: function () {
+          this.onValidateinvoiceCustomer();
         },
         onValidateinvoiceCustomer: function () {
             var that = this;

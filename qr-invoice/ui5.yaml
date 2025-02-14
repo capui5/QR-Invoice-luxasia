@@ -18,6 +18,8 @@ server:
         backend:
           - path: /sap
             url: http://portal.luxasia.com:8031
+            client: '250'
+            destination: ECC
     - name: fiori-tools-appreload
       afterMiddleware: compression
       configuration:

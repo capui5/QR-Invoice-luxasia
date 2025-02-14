@@ -42,3 +42,8 @@ server:
             mockdataPath: ./webapp/localService/data
             generateMockData: true
         annotations: []
+    - name: fiori-tools-preview
+      afterMiddleware: fiori-tools-appreload
+      configuration:
+        component: com.newcustinvoiceqr.newcustinvoiceqr.qrinvoice
+        ui5Theme: sap_horizon
