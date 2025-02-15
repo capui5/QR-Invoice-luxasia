@@ -68,20 +68,10 @@ sap.ui.define([
             this.CountryCodeData();
           },
 
-        getRouter: function () {
-            return sap.ui.core.UIComponent.getRouterFor(this);
-        },
+          getRouter: function () {
+            return UIComponent.getRouterFor(this);
+          },
 
-        // Onroutetotranspage: function () {
-        //     var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-        //     var oCustomerNoModel = this.getView().getModel("CustomerNoModel");
-            
-        //     if (!oCustomerNoModel || !oCustomerNoModel.getProperty("/Firstnames") || oCustomerNoModel.getProperty("/Firstnames").length === 0) {
-        //         sap.m.MessageBox.error("Customer No not found. Please create a new customer and try again.");
-        //     } else {
-        //         oRouter.navTo("transaction");
-        //     }
-        // },
         Onroutetotranspage: function () {
           var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
           var oCustomerNoModel = this.getView().getModel("CustomerNoModel");
