@@ -162,15 +162,58 @@ sap.ui.define([
             var UserEmail = decryptedData.split("##")[1];
             var CDUserID = decryptedData.split("##")[3];
             console.log(CDUserID);
+
+
+            // Get input fields
+        var oEmailField = this.getView().byId("email");
+        var oSalesOrderField = this.getView().byId("Salesordernumber");
+
+        // Get values
+        var sEmail = oEmailField.getValue().trim();
+        var sSalesOrder = oSalesOrderField.getValue().trim();
+
+        // Reset previous validation states
+        oEmailField.setValueState(sap.ui.core.ValueState.None);
+        oSalesOrderField.setValueState(sap.ui.core.ValueState.None);
+
+        var missingFields = [];
+
+        // Validate required fields
+        if (!sEmail) {
+          oEmailField.setValueState(sap.ui.core.ValueState.Error);
+          oEmailField.setValueStateText("Email is required.");
+          missingFields.push("Email");
+        }
+        if (!sSalesOrder) {
+          oSalesOrderField.setValueState(sap.ui.core.ValueState.Error);
+          oSalesOrderField.setValueStateText("Sales Order Number is required.");
+          missingFields.push("Sales Order Number");
+        }
+
+        // Email format validation
+        var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (sEmail && !emailPattern.test(sEmail)) {
+          oEmailField.setValueState(sap.ui.core.ValueState.Error);
+          oEmailField.setValueStateText("Invalid email format.");
+          missingFields.push("Valid Email Address");
+        }
+
+        // If there are missing fields, show error message
+        if (missingFields.length > 0) {
+          sap.m.MessageBox.error("Please fill the following required fields:\n\n" + missingFields.join("\n"));
+          return;
+        }
            
             var payload = {
-              "SalesDocument": that.getView().byId("Salesordernumber").getValue(),
+              // "SalesDocument": that.getView().byId("Salesordernumber").getValue(),
+              "SalesDocument": sSalesOrder,
               "CustomerName": that.getView().byId("cname").getValue(),
               "AddrLine1": that.getView().byId("add1").getValue(),
               "AddrLine2": that.getView().byId("add2").getValue(),
               "AddrLine3": that.getView().byId("add3").getValue(),
               "TelNumber": that.getView().byId("phoneno").getValue(),
-              "Email": that.getView().byId("email").getValue(),
+              // "Email": that.getView().byId("email").getValue(),
+              "Email": sEmail,
               "City": that.getView().byId("city").getValue(),
               "PostalCode": that.getView().byId("pcode").getValue(),
               "Land": that.getView().byId("country").getSelectedKey(),
@@ -221,6 +264,21 @@ sap.ui.define([
                 });
             }
             });
-          }
+          },
+          oncancelinvoiceCustomer: function () {
+            var oView = this.getView();
+            oView.byId("salesemployeeinputinvoice").setValue("");
+            oView.byId("cname").setValue("");
+            oView.byId("add1").setValue("");
+            oView.byId("add2").setValue("");
+            oView.byId("add3").setValue("");
+            oView.byId("phoneno").setValue("");
+            oView.byId("email").setValue("");
+            oView.byId("city").setValue("");
+            oView.byId("pcode").setValue("");
+            oView.byId("NRIC").setValue("");
+            oView.byId("sstno").setValue("");
+            oView.byId("regno").setValue("");
+          },
     });
 });
