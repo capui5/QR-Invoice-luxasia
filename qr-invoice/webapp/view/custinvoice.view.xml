@@ -150,7 +150,7 @@
                 press="oncancelinvoiceCustomer"
                 class="wide-create"
                 width="300px"
-                type="Transparent"
+                type="Reject"
             />
         </HBox>
     </Page>
