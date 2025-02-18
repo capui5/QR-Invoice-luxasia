@@ -10,7 +10,7 @@
             <ToolbarSpacer/>
         </OverflowToolbar>
         <VBox class="sapUiSmallMargin" alignItems="Center" justifyContent="Center">
-            <Title text="{i18n>New_Customer_Invoice_Profile}" level="H3" class="Newcustomer"/>
+            <Title text="E-Invoice Requisition" level="H3" class="Newcustomer"/>
             <Text text="{i18n>Please_enter_details}" class="pleaseenter"/>
         </VBox>
         <FlexBox alignItems="Center" justifyContent="Center">
@@ -38,7 +38,7 @@
                                 <f:fields>
                                     <Input
                                         placeholder="{i18n>Customer_Name}"
-                                        id="cname"
+                                        id="cname" required="true"
                                       
                                     />
                                 </f:fields>
@@ -51,7 +51,7 @@
                             <f:FormElement label="{i18n>Mobile_Number}">
                                 <f:fields>
                                     <Select  id="countrycode"   items="{path: 'CountryTelCodeModel>/' ,
-                                        length:5000}" >
+                                        length:5000}" required="true" >
                                         <items>
                                             <core:Item
                                                 text="{CountryTelCodeModel>TelCode}"
@@ -62,12 +62,12 @@
                                             <l:GridData span="XL2 L2 M2 S12" />
                                         </layoutData>
                                     </Select>
-                                    <Input placeholder="{i18n>Mobile_Number}" id="phoneno" />
+                                    <Input placeholder="{i18n>Mobile_Number}" id="phoneno" required="true" />
                                 </f:fields>
                             </f:FormElement>
                             <f:FormElement label="{i18n>sstno}">
                                 <f:fields>
-                                    <Input placeholder="{i18n>sstno}" id="sstno"/>
+                                    <Input placeholder="{i18n>sstno}" id="sstno" required="true"/>
                                 </f:fields>
                             </f:FormElement>
                              <f:FormElement label="{i18n>salesorderno}">
@@ -77,12 +77,12 @@
                             </f:FormElement>
                             <f:FormElement label="{i18n>NRIC}">
                                 <f:fields>
-                                    <Input placeholder="{i18n>NRIC}" id="NRIC"/>
+                                    <Input placeholder="{i18n>NRIC}" id="NRIC" required="true"/>
                                 </f:fields>
                             </f:FormElement>
                              <f:FormElement label="{i18n>regno}">
                                 <f:fields>
-                                    <Input placeholder="{i18n>regno}" id="regno"/>
+                                    <Input placeholder="{i18n>regno}" id="regno" required="true"/>
                                 </f:fields>
                             </f:FormElement>
                         </f:formElements>
@@ -93,7 +93,7 @@
                                 <f:fields>
                                     <Input
                                         placeholder="{i18n>Address_1}"
-                                        id="add1"
+                                        id="add1" required="true"
                                     />
                                 </f:fields>
                             </f:FormElement>
@@ -101,7 +101,7 @@
                                 <f:fields>
                                     <Input
                                         placeholder="{i18n>Address_2}"
-                                        id="add2"
+                                        id="add2" required="true"
                                     />
                                 </f:fields>
                             </f:FormElement>
@@ -109,14 +109,14 @@
                                 <f:fields>
                                     <Input
                                         placeholder="{i18n>Address_3}"
-                                        id="add3"
+                                        id="add3" required="true"
                                     />
                                 </f:fields>
                             </f:FormElement>
                             <f:FormElement label="{i18n>Pincode}/{i18n>City}">
                                 <f:fields>
-                                    <Input placeholder="{i18n>Pincode}" id="pcode"/>
-                                    <Input placeholder="{i18n>City}" id="city"/>
+                                    <Input placeholder="{i18n>Pincode}" id="pcode" required="true"/>
+                                    <Input placeholder="{i18n>City}" id="city" required="true"/>
                                 </f:fields>
                             </f:FormElement>
                             <f:FormElement label="{i18n>Country}">
@@ -124,7 +124,7 @@
                                     <Select
                                         items="{path: 'CountryModel>/',
                                         length:5000}"
-                                        id="country"
+                                        id="country" required="true"
                                        
                                     >
                                         <items>
@@ -143,7 +143,7 @@
                 </f:formContainers>
             </f:Form>
         </FlexBox>
-        <HBox alignItems="Center" justifyContent="Center">
+        <VBox alignItems="Center" justifyContent="Center">
             <Button text="Submit" press="onCreateProfile" class="wide-create" width="300px" type="Emphasized"/>
             <Button
                 text="Cancel"
@@ -152,6 +152,6 @@
                 width="300px"
                 type="Reject"
             />
-        </HBox>
+        </VBox>
     </Page>
 </mvc:View>

@@ -155,7 +155,61 @@ sap.ui.define([
         onCreateProfile: function () {
           this.onValidateinvoiceCustomer();
         },
+        validateInvoiceFields: function () {
+          var that = this;
+          var requiredFields = [
+              { id: "Salesordernumber", name: "Sales Order Number" },
+              { id: "cname", name: "Customer Name" },
+              { id: "add1", name: "Address Line 1" },
+              { id: "add2", name: "Address Line 2" },
+              { id: "add3", name: "Address Line 3" },
+              { id: "phoneno", name: "Mobile Number" },
+              { id: "email", name: "Email", isEmail: true }, 
+              { id: "city", name: "City" },
+              { id: "pcode", name: "Pincode" },
+              { id: "country", name: "Country", isSelect: true },
+              { id: "countrycode", name: "Country Code", isSelect: true },
+              { id: "NRIC", name: "NRIC" },
+              { id: "sstno", name: "SST Number" },
+              { id: "regno", name: "Registration Number" }
+          ];
+      
+          var isValid = true;
+          var errorMessage = "";
+      
+          var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Email validation regex
+      
+          requiredFields.forEach(function (field) {
+              var control = that.getView().byId(field.id);
+              var value = field.isSelect ? control.getSelectedKey() : control.getValue();
+      
+              if (!value) {
+                  isValid = false;
+                  errorMessage += field.name + " is required.\n";
+                  control.setValueState("Error");
+                  control.setValueStateText(field.name + " is required");
+              } else if (field.isEmail && !emailRegex.test(value)) { 
+                  // Check for email format if the field is an email field
+                  isValid = false;
+                  errorMessage += field.name + " is not a valid email format.\n";
+                  control.setValueState("Error");
+                  control.setValueStateText("Invalid email format");
+              } else {
+                  control.setValueState("None"); // Reset value state if valid
+              }
+          });
+      
+          if (!isValid) {
+              sap.m.MessageBox.error(errorMessage);
+          }
+      
+          return isValid;
+      },
         onValidateinvoiceCustomer: function () {
+          if (!this.validateInvoiceFields()) {
+            return; 
+        }
+    
             var that = this;
             var decryptedData = atob(window.location.search.split("?CD=")[1]);
             var sStoreId = decryptedData.split("##")[0];
@@ -163,63 +217,23 @@ sap.ui.define([
             var CDUserID = decryptedData.split("##")[3];
             console.log(CDUserID);
 
-
-            // Get input fields
-        var oEmailField = this.getView().byId("email");
-        var oSalesOrderField = this.getView().byId("Salesordernumber");
-
-        // Get values
-        var sEmail = oEmailField.getValue().trim();
-        var sSalesOrder = oSalesOrderField.getValue().trim();
-
-        // Reset previous validation states
-        oEmailField.setValueState(sap.ui.core.ValueState.None);
-        oSalesOrderField.setValueState(sap.ui.core.ValueState.None);
-
-        var missingFields = [];
-
-        // Validate required fields
-        if (!sEmail) {
-          oEmailField.setValueState(sap.ui.core.ValueState.Error);
-          oEmailField.setValueStateText("Email is required.");
-          missingFields.push("Email");
-        }
-        if (!sSalesOrder) {
-          oSalesOrderField.setValueState(sap.ui.core.ValueState.Error);
-          oSalesOrderField.setValueStateText("Sales Order Number is required.");
-          missingFields.push("Sales Order Number");
-        }
-
-        // Email format validation
-        var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (sEmail && !emailPattern.test(sEmail)) {
-          oEmailField.setValueState(sap.ui.core.ValueState.Error);
-          oEmailField.setValueStateText("Invalid email format.");
-          missingFields.push("Valid Email Address");
-        }
-
-        // If there are missing fields, show error message
-        if (missingFields.length > 0) {
-          sap.m.MessageBox.error("Please fill the following required fields:\n\n" + missingFields.join("\n"));
-          return;
-        }
-           
             var payload = {
               // "SalesDocument": that.getView().byId("Salesordernumber").getValue(),
-              "SalesDocument": sSalesOrder,
+              "SalesDocument": this.getView().byId("Salesordernumber").getValue(),
               "CustomerName": that.getView().byId("cname").getValue(),
               "AddrLine1": that.getView().byId("add1").getValue(),
               "AddrLine2": that.getView().byId("add2").getValue(),
               "AddrLine3": that.getView().byId("add3").getValue(),
               "TelNumber": that.getView().byId("phoneno").getValue(),
               // "Email": that.getView().byId("email").getValue(),
-              "Email": sEmail,
+              "Email": this.getView().byId("email").getValue(),
               "City": that.getView().byId("city").getValue(),
               "PostalCode": that.getView().byId("pcode").getValue(),
               "Land": that.getView().byId("country").getSelectedKey(),
               "Tin": that.getView().byId("NRIC").getValue(),
               "SstNumber": that.getView().byId("sstno").getValue(),
-              "RegNumber": that.getView().byId("regno").getValue()
+              "RegNumber": that.getView().byId("regno").getValue(),
+              "CreatedByEmail": UserEmail,
           };
           
       
