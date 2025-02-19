@@ -161,8 +161,7 @@ sap.ui.define([
               { id: "Salesordernumber", name: "Sales Order Number" },
               { id: "cname", name: "Customer Name" },
               { id: "add1", name: "Address Line 1" },
-              { id: "add2", name: "Address Line 2" },
-              { id: "add3", name: "Address Line 3" },
+             
               { id: "phoneno", name: "Mobile Number" },
               { id: "email", name: "Email", isEmail: true }, 
               { id: "city", name: "City" },

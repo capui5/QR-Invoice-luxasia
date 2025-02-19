@@ -58,3 +58,15 @@
 
     height: 50px;
 }
+.invoice {
+    line-height: 1.5;
+    margin-left: 20%;
+    margin-right: 10%;
+    text-align: justify;
+    text-justify: inter-word;
+    display: flex;
+    color: #000 !important;
+    padding: 10px;
+    font-size: small;
+    font-weight: lighter;
+}

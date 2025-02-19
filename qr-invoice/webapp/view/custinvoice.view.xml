@@ -101,7 +101,7 @@
                                 <f:fields>
                                     <Input
                                         placeholder="{i18n>Address_2}"
-                                        id="add2" required="true"
+                                        id="add2" 
                                     />
                                 </f:fields>
                             </f:FormElement>
@@ -109,7 +109,7 @@
                                 <f:fields>
                                     <Input
                                         placeholder="{i18n>Address_3}"
-                                        id="add3" required="true"
+                                        id="add3" 
                                     />
                                 </f:fields>
                             </f:FormElement>
@@ -143,6 +143,11 @@
                 </f:formContainers>
             </f:Form>
         </FlexBox>
+          <Text
+            text="Please use NA for any data that is unavailable or not applicable."
+            class="invoice"
+            textAlign="Center"
+        />
         <VBox alignItems="Center" justifyContent="Center">
             <Button text="Submit" press="onCreateProfile" class="wide-create" width="300px" type="Emphasized"/>
             <Button
