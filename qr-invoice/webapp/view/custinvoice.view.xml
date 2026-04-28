@@ -75,14 +75,14 @@
                                     <Input placeholder="{i18n>salesorderno}" id="Salesordernumber" required="true"/>
                                 </f:fields>
                             </f:FormElement>
-                            <f:FormElement label="{i18n>NRIC}">
+                            <f:FormElement label="Registration number / NRIC">
                                 <f:fields>
-                                    <Input placeholder="{i18n>NRIC}" id="NRIC" required="true"/>
+                                    <Input placeholder="Registration number / NRIC" id="NRIC" required="true"/>
                                 </f:fields>
                             </f:FormElement>
-                             <f:FormElement label="{i18n>regno}">
+                             <f:FormElement label="TIN Number">
                                 <f:fields>
-                                    <Input placeholder="{i18n>regno}" id="regno" required="true"/>
+                                    <Input placeholder="TIN Number" id="regno" required="true"/>
                                 </f:fields>
                             </f:FormElement>
                         </f:formElements>

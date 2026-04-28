@@ -92,13 +92,14 @@
     "routing": {
       "config": {
         "routerClass": "sap.m.routing.Router",
-        "viewType": "XML",
-        "viewPath": "com.newcustinvoiceqr.newcustinvoiceqr.qrinvoice.view",
-        "async": true,
         "controlAggregation": "pages",
         "controlId": "app",
-       "clearControlAggregation": false
-        
+        "transition": "slide",
+        "type": "View",
+        "viewType": "XML",
+        "path": "com.newcustinvoiceqr.newcustinvoiceqr.qrinvoice.view",
+        "async": true,
+        "viewPath": "com.newcustinvoiceqr.newcustinvoiceqr.qrinvoice.view"
       },
       "routes": [
         {
@@ -111,23 +112,19 @@
       ],
       "targets": {
         "Targetcustinvoice": {
-          "viewType": "XML",
-          "transition": "slide",
-          "clearControlAggregation": false,
-          "viewId": "custinvoice",
-          "viewName": "custinvoice"
+          "id": "custinvoice",
+          "name": "custinvoice"
         }
       }
     },
     "rootView": {
       "viewName": "com.newcustinvoiceqr.newcustinvoiceqr.qrinvoice.view.App",
       "type": "XML",
-      "async": true,
       "id": "App"
     }
   },
   "sap.cloud": {
     "public": true,
-    "service": "salesorder"
+    "service": "qr-invoice"
   }
 }

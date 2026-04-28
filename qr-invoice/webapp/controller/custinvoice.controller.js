@@ -13,7 +13,16 @@ sap.ui.define([
             var decryptedData = atob(window.location.search.split("?CD=")[1]); 
             var UserEmail = decryptedData.split("##")[0];
             var CountryCode = decryptedData.split("##")[2];
-            sap.ui.getCore().getConfiguration().setLanguage(CountryCode);
+            var oCountryToLanguage = {
+              "TH": "th",
+              "VN": "vn",
+              "ID": "id",
+              "CN": "cn",
+              "TW": "cn",
+              "HK": "cn"
+            };
+            var sLanguage = oCountryToLanguage[CountryCode] || "en";
+            sap.ui.getCore().getConfiguration().setLanguage(sLanguage);
             var CDUserID = decryptedData.split("##")[2];
             var qrCodeGeneratedDateTime = new Date(decryptedData.split("##")[2]);
             var currentDateTime = new Date();
@@ -161,7 +170,6 @@ sap.ui.define([
               { id: "Salesordernumber", name: "Sales Order Number" },
               { id: "cname", name: "Customer Name" },
               { id: "add1", name: "Address Line 1" },
-             
               { id: "phoneno", name: "Mobile Number" },
               { id: "email", name: "Email", isEmail: true }, 
               { id: "city", name: "City" },
@@ -218,14 +226,14 @@ sap.ui.define([
 
             var payload = {
               // "SalesDocument": that.getView().byId("Salesordernumber").getValue(),
-              "SalesDocument": this.getView().byId("Salesordernumber").getValue(),
+              "SalesDocument": that.getView().byId("Salesordernumber").getValue(),
               "CustomerName": that.getView().byId("cname").getValue(),
               "AddrLine1": that.getView().byId("add1").getValue(),
               "AddrLine2": that.getView().byId("add2").getValue(),
               "AddrLine3": that.getView().byId("add3").getValue(),
               "TelNumber": that.getView().byId("phoneno").getValue(),
               // "Email": that.getView().byId("email").getValue(),
-              "Email": this.getView().byId("email").getValue(),
+              "Email": that.getView().byId("email").getValue(),
               "City": that.getView().byId("city").getValue(),
               "PostalCode": that.getView().byId("pcode").getValue(),
               "Land": that.getView().byId("country").getSelectedKey(),
