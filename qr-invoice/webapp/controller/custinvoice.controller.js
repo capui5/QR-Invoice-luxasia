@@ -14,12 +14,9 @@ sap.ui.define([
             var UserEmail = decryptedData.split("##")[0];
             var CountryCode = decryptedData.split("##")[2];
             var oCountryToLanguage = {
-              "TH": "th",
-              "VN": "vn",
+              "TW": "zh_TW",
               "ID": "id",
-              "CN": "cn",
-              "TW": "cn",
-              "HK": "cn"
+              "VN": "vi"
             };
             var sLanguage = oCountryToLanguage[CountryCode] || "en";
             sap.ui.getCore().getConfiguration().setLanguage(sLanguage);
