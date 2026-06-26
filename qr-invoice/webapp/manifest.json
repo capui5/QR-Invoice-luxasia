@@ -21,7 +21,7 @@
         "type": "OData",
         "settings": {
           "annotations": [],
-          "localUri": "localService/metadata.xml",
+          "localUri": "localService/mainService/metadata.xml",
           "odataVersion": "2.0"
         }
       }
@@ -77,6 +77,11 @@
         }
       },
       "mainModel": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {}
+      },
+      "": {
         "dataSource": "mainService",
         "preload": true,
         "settings": {}

@@ -17,7 +17,9 @@ server:
           url: https://ui5.sap.com
         backend:
           - path: /sap
-            url: http://portal.luxasia.com:8031
+            url: http://der-otc-npr.sap.luxasia.ltd:44300
+            client: '200'
+            destination: Luxasia_s4hana
     - name: fiori-tools-appreload
       afterMiddleware: compression
       configuration:
@@ -35,7 +37,7 @@ server:
         mountPath: /
         services:
           - urlPath: /sap/opu/odata/sap/ZSDGW_CE_APP_SRV
-            metadataPath: ./webapp/localService/metadata.xml
-            mockdataPath: ./webapp/localService/data
+            metadataPath: ./webapp/localService/mainService/metadata.xml
+            mockdataPath: ./webapp/localService/mainService/data
             generateMockData: true
         annotations: []

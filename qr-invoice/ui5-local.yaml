@@ -31,15 +31,17 @@ server:
         ignoreCertError: false # If set to true, certificate errors will be ignored. E.g. self-signed certificates will be accepted
         backend:
           - path: /sap
-            url: http://portal.luxasia.com:8031
+            url: http://der-otc-npr.sap.luxasia.ltd:44300
+            client: '200'
+            destination: Luxasia_s4hana
     - name: sap-fe-mockserver
       beforeMiddleware: csp
       configuration:
         mountPath: /
         services:
           - urlPath: /sap/opu/odata/sap/ZSDGW_CE_APP_SRV
-            metadataPath: ./webapp/localService/metadata.xml
-            mockdataPath: ./webapp/localService/data
+            metadataPath: ./webapp/localService/mainService/metadata.xml
+            mockdataPath: ./webapp/localService/mainService/data
             generateMockData: true
         annotations: []
     - name: fiori-tools-preview
