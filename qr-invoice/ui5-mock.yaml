@@ -19,7 +19,7 @@ server:
           - path: /sap
             url: http://der-otc-npr.sap.luxasia.ltd:44300
             client: '200'
-            destination: Luxasia_s4hana
+            destination: LUXASIA_S4HANA
     - name: fiori-tools-appreload
       afterMiddleware: compression
       configuration:
@@ -41,3 +41,8 @@ server:
             mockdataPath: ./webapp/localService/mainService/data
             generateMockData: true
         annotations: []
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**

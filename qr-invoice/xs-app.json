@@ -5,7 +5,7 @@
     {
       "source": "^/sap/(.*)$",
       "target": "/sap/$1",
-      "destination": "ECC",
+      "destination": "LUXASIA_S4HANA",
       "authenticationType": "xsuaa",
       "csrfProtection": false
     },

@@ -33,7 +33,7 @@ server:
           - path: /sap
             url: http://der-otc-npr.sap.luxasia.ltd:44300
             client: '200'
-            destination: Luxasia_s4hana
+            destination: LUXASIA_S4HANA
     - name: sap-fe-mockserver
       beforeMiddleware: csp
       configuration:
@@ -49,3 +49,8 @@ server:
       configuration:
         component: com.newcustinvoiceqr.newcustinvoiceqr.qrinvoice
         ui5Theme: sap_horizon
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
